@@ -1,0 +1,23 @@
+{
+  "name": "twitter-streaming-kinesis-node",
+  "version": "0.0.1",
+  "author": "AssafMentzer",
+  "private": true,
+  "scripts": {
+    "pretest": "npm install",
+    "test": "mocha *.spec.js",
+    "build-init": "rm -rf dist && mkdir dist && mkdir dist/util",
+    "build:copy": "cp config.js dist/ && cp twitter_stream_producer_app.js dist/ && cp twitter_stream_producer.js dist/ && cp -r util dist/",
+    "build:install": "cp package.json dist/ && cd dist && npm install --production",
+    "build": "npm-run-all -s build-init build:copy build:install",
+    "tar": "cd dist && tar -cvf ec2_twitter_reader.tar *"
+  },
+  "dependencies": {
+    "aws-sdk": "2.x",
+    "log4js": "~0.6.22",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.5",
+    "request": "^2.81.0",
+    "twit": "*"
+  }
+}
